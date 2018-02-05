@@ -76,7 +76,7 @@ services:
       - 27017:27017
   rest-server:
     container_name: rest-server
-    image: my-composer-rest-server
+    image: composer-rest-server
     environment:
       - COMPOSER_CARD=admin@blockchain-network
       - COMPOSER_NAMESPACES=never
