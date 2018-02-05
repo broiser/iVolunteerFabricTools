@@ -69,24 +69,3 @@ services:
       - 5984:5984
     environment:
       DB_URL: http://localhost:5984/member_db
-  mongodb:
-    container_name: mongodb
-    image: mongo
-    ports:
-      - 27017:27017
-  rest-server:
-    container_name: rest-server
-    image: composer-rest-server
-    environment:
-      - COMPOSER_CARD=admin@blockchain-network
-      - COMPOSER_NAMESPACES=never
-      - COMPOSER_AUTHENTICATION=true
-      - COMPOSER_MULTIUSER=true
-      - 'COMPOSER_PROVIDERS={ "github": { "provider": "github", "module": "passport-github", "clientID": "REPLACE_WITH_CLIENT_ID", "clientSecret": "REPLACE_WITH_CLIENT_SECRET", "authPath": "/auth/github", "callbackURL": "/auth/github/callback", "successRedirect": "/", "failureRedirect": "/" } }'
-      - 'COMPOSER_DATASOURCES={ "db": { "name": "db", "connector": "mongodb", "host": "mongodb" } }'
-    ports:
-      - 3000:3000
-    volumes:
-        - ~/.composer:/home/composer/.composer
-    depends_on:
-      - mongodb
